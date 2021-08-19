@@ -1,6 +1,7 @@
 ﻿using homework_51_1.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -53,7 +54,35 @@ namespace homework_51_1.Controllers
             {
                 return new NotFoundResult();
             }
-            
+        }
+        public IActionResult InfoBrend(int id)
+        {
+            var task = _db.Phones.FirstOrDefault(e => e.Id == id);
+            Dictionary<string, string> valuePairs = new Dictionary<string, string>();
+            valuePairs.Add("Apple", "https://www.apple.com");
+            valuePairs.Add("Xiaomi", "https://www.mi.com");
+            valuePairs.Add("Motorola", "https://www.motorola.com");
+            valuePairs.Add("Nokia", "https://www.nokia.com");
+            valuePairs.Add("Samsung", "https://www.samsung.com");
+            valuePairs.Add("Huawei", "https://www.huawei.com");
+            foreach (var pair in valuePairs)
+            {
+                if(pair.Key == task.Company)
+                    return Redirect(pair.Value);
+            }
+            return RedirectToAction("Index");
+        }
+        public IActionResult EditingPhone(int id)
+        {
+            var task = _db.Phones.FirstOrDefault(e => e.Id == id);
+            return View(task);
+        }
+        [HttpPost]
+        public IActionResult EditingPhone(Phone phone)
+        {
+            _db.Entry(phone).State = EntityState.Modified;
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

@@ -41,7 +41,12 @@
                 <th>Стоимость</th>
 
                 <th>Заказать</th>
+
+                <th>Изменить</th>
+
                 <th>Характеристики (pdf)</th>
+
+                <th>Сайт производителя</th>
 
             </tr>
 
@@ -66,7 +71,17 @@
             </td>
             <td>
 
+                <a asp-action="EditingPhone" asp-controller="Phones" asp-route-Id="@phone.Id">Редактировать</a>
+
+            </td>
+            <td>
+
                 <a asp-action="DownloadFile" asp-controller="Phones" asp-route-Id="@phone.Id">Скачать</a>
+
+            </td>
+            <td>
+
+                <a asp-action="InfoBrend" asp-controller="Phones" asp-route-Id="@phone.Id">Перейти</a>
 
             </td>
 
