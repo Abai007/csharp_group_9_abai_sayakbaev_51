@@ -10,20 +10,20 @@ namespace homework_51_1.Controllers
 {
     public class OrdersController : Controller
     {
-        private MobileContext _db;
+        private MobileContext _context;
         public OrdersController(MobileContext db)
         {
-            _db = db;
+            _context = db;
         }
 
         public IActionResult Index()
         {
-            List<Order> orders = _db.Orders.Include(o => o.Phone).ToList();
+            List<Order> orders = _context.Orders.Include(o => o.Phone).ToList();
             return View(orders);
         }
         public IActionResult Create(int phoneId)
         {
-            Phone phone = _db.Phones.FirstOrDefault(p => p.Id == phoneId);
+            Phone phone = _context.Phones.FirstOrDefault(p => p.Id == phoneId);
             return View(new Order { Phone = phone });
         }
         [HttpPost]
@@ -31,8 +31,8 @@ namespace homework_51_1.Controllers
         {
             if (order != null)
             {
-                _db.Orders.Add(order);
-                _db.SaveChanges();
+                _context.Orders.Add(order);
+                _context.SaveChanges();
             }
             return RedirectToAction("Index");
         }

@@ -41,6 +41,7 @@
                 <th>Стоимость</th>
 
                 <th>Заказать</th>
+                <th>Характеристики (pdf)</th>
 
             </tr>
 
@@ -61,6 +62,11 @@
             <td>
 
                 <a asp-action="Create" asp-controller="Orders" asp-route-phoneId="@phone.Id">Заказать</a>
+
+            </td>
+            <td>
+
+                <a asp-action="DownloadFile" asp-controller="Phones" asp-route-Id="@phone.Id">Скачать</a>
 
             </td>
 
