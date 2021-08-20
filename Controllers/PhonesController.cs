@@ -42,10 +42,10 @@ namespace homework_51_1.Controllers
         public IActionResult DownloadFile(int id)
         {
             var task = _db.Phones.FirstOrDefault(e => e.Id == id);
-            FileInfo fInfo = new FileInfo($"Files/{task.Company}.pdf");
+            FileInfo fInfo = new FileInfo($"wwwroot/Files/{task.Company}.pdf");
             if (fInfo.Exists)
             {
-                string filePath = Path.Combine(appEnvironment.ContentRootPath, $"Files/{task.Company}.pdf");
+                string filePath = Path.Combine(appEnvironment.ContentRootPath, $"wwwroot/Files/{task.Company}.pdf");
                 string fileType = "application/pdf";
                 string fileName = $"{task.Company}.pdf";
                 return PhysicalFile(filePath, fileType, fileName);
