@@ -17,6 +17,7 @@ namespace homework_51_1.Controllers
 
         public PhonesController(MobileContext db, IHostingEnvironment appEnvironment)
         {
+
             _db = db;
             this.appEnvironment = appEnvironment;
         }
